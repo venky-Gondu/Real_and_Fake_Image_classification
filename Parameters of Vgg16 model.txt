@@ -1,0 +1,40 @@
+
+
+## **Model Architecture Parameters:**
+- **Base Model**: VGG16 pre-trained on ImageNet
+- **Input Shape**: (224, 224, 3) - RGB images at 224x224 pixels
+- **Custom Layers**: 
+  - GlobalAveragePooling2D or Flatten layer
+  - Dense layer with 1024 units (ReLU activation)
+  - Output layer with 1 unit (sigmoid activation for binary classification)
+
+## **Training Parameters:**
+- **Batch Size**: 16 (adjustable based on GPU memory)
+- **Epochs**: 20
+- **Learning Rate**: 0.0001 (Adam optimizer)
+- **Loss Function**: binary_crossentropy
+- **Metrics**: accuracy
+
+## **Data Augmentation Parameters:**
+- **Rotation Range**: 90 degrees
+- **Rescaling**: 1/255 (normalization)
+- **Brightness Range**: [0.5, 1.0]
+- **Width/Height Shift Range**: 0.5
+- **Horizontal Flip**: True
+- **Vertical Flip**: True
+
+## **Dataset Parameters:**
+- **Training Set**: 100,000 images
+- **Validation Set**: 20,000 images  
+- **Test Set**: 20,000 images
+- **Classes**: ['fake', 'real'] (binary classification)
+- **Class Mode**: binary
+
+## **Callbacks Parameters:**
+- **ModelCheckpoint**: Saves best model based on validation loss
+- **EarlyStopping**: Patience of 5 epochs, restores best weights
+- **Class Weights**: Balanced (handles class imbalance)
+
+## **Model Performance:**
+- **Final Accuracy**: 71.23%
+- **Precision/Recall**: 0.71 for both fake and real classes
